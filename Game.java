@@ -1,4 +1,4 @@
-public abstract class Game {
+public class Game { //not defined as abstract so that the tester can function, real Game class will be abstract
 
     //INSTANCE VARIABLES
 
@@ -40,18 +40,30 @@ public abstract class Game {
         return this.odds;
     }
 
-    //SETTERS (make errors)
+    //SETTERS
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String name) throws IllegalArgumentException {
+        if (name == null || name.length() <= 0) {
+            throw new IllegalArgumentException("Invalid string for Game name");
+        } else {
+            this.name = name;
+        }
     }
 
-    public void setBet(double bet) {
-        this.bet = bet;
+    public void setBet(double bet) throws IllegalArgumentException{
+        if (bet <= 0) {
+            throw new IllegalArgumentException("Invalid double for Game bet");
+        } else {
+            this.bet = bet;
+        }
     }
 
-    public void setOdds(double odds) {
-        this.odds = odds;
+    public void setOdds(double odds) throws IllegalArgumentException{
+        if (odds <= 1) {
+            throw new IllegalArgumentException("Invalid double for Game odds");
+        } else {
+            this.odds = odds;
+        }
     }
 
     public void setAll(String name, double bet, double odds) {
@@ -77,7 +89,7 @@ public abstract class Game {
         return (this.name.equals(o.name)) && (this.bet == o.getBet()) && (this.odds == o.getOdds());
     }
 
-    //PLAY
+    //PLAY (commented out so that GameTester functions)
 
-    public abstract double play();
+    //public abstract double play();
 }
